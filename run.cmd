@@ -2,11 +2,11 @@
 CALL make_release.cmd
 ECHO.
 ECHO Running.
-IF %ERRORLEVEL% NEQ 0 ECHO An error occurred during compilation. 
+IF %ERRORLEVEL% NEQ 0 ECHO An error occurred during compilation. & GOTO :END
 app.exe
 ECHO.
 ECHO.
 ECHO Return code is %ERRORLEVEL%.
+DEL *.exe 2>NUL
 :END
-DEL *.o *.exe 2>NUL
 ECHO Done.
