@@ -1,0 +1,7 @@
+pacman -Syuu
+pacman -S msys2-devel
+pacman -S mingw-w64-x86_64-toolchain
+pacman -S mingw-w64-x86_64-clang
+pacman -S git
+pacman -S man
+pacman -S make
