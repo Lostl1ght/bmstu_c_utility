@@ -10,7 +10,7 @@ C:\msys64\mingw64\bin\gcc.exe -o %VAR%\app.exe %VAR%\main.o %VAR%\matrix.o %VAR%
 SET ERR=%ERRORLEVEL%
 POPD
 IF %ERR% NEQ 0 ECHO. & ECHO Files were not compiled.
-DEL *.o
+DEL *.o 2>NUL
 ECHO Done.
 ECHO.
 EXIT /B %ERR%
