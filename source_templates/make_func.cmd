@@ -7,7 +7,7 @@ PUSHD "C:\msys64\mingw64\bin"
 C:\msys64\mingw64\bin\gcc.exe -std=c99 -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Wvla -Werror --coverage -O0 -g3 -c %VAR%\main.c -o %VAR%\main.o
 C:\msys64\mingw64\bin\gcc.exe --coverage -o %VAR%\app.exe %VAR%\main.o
 POPD
-IF %ERRORLEVEL% NEQ 0 ECHO. & ECHO Files were not compiled & GOTO :END
+IF %ERRORLEVEL% NEQ 0 ECHO. & ECHO Files were not compiled. & GOTO :END
 ECHO Done.
 ECHO.
 ECHO Testing.
