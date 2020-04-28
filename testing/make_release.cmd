@@ -12,4 +12,5 @@ POPD
 IF %ERR% NEQ 0 ECHO. & ECHO Files were not compiled.
 DEL *.o
 ECHO Done.
+ECHO.
 EXIT /B %ERR%
