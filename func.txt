@@ -39,7 +39,7 @@ long is_sqrt(long a)
     return a == 0;
 }
 
-long insertion_sort(long *a, size_t n)
+long insertion_sort(long a[NMAX], size_t n)
 {
     if (n == 0)
         return EXIT_FAILURE;
@@ -58,11 +58,22 @@ long insertion_sort(long *a, size_t n)
     return EXIT_SUCCESS;
 }
 
-long swap(long *a, long *b)
+void swap(long *a, long *b)
 {
     long t = *a;
     *a = *b;
     *b = t;
 
-    return EXIT_SUCCESS;
+    return;
+}
+
+void delete_by_i(long a[NMAX], size_t *n, size_t *i)
+{
+    for (size_t l = *i; l < *n - 1; l++)
+        a[l] = a[l + 1];
+
+    *n -= 1;
+    *i -= 1;
+
+    return;
 }

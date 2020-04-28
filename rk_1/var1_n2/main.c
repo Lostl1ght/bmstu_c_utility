@@ -5,23 +5,33 @@
 #define NMAX 64
 
 long input_matrix(long m[NMAX][NMAX], size_t rows, size_t columns);
-long output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns);
+void output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns);
+void array_of_col_avg(long m[NMAX][NMAX], size_t r, size_t c, double a[NMAX]);
+void sort_matrix_by_col_avg(double a[NMAX], long m[NMAX][NMAX], size_t r, size_t c);
+void lswap(long *a, long *b);
+void dswap(double *a, double *b);
 
 int main(void)
 {
     long m[NMAX][NMAX];
     size_t r, c;
+    double a[NMAX];
     
     if (scanf("%zu", &r) != 1 || r == 0 || r > 64)
         return EXIT_FAILURE;
     if (scanf("%zu", &c) != 1 || c == 0 || c > 64)
         return EXIT_FAILURE;
 
-    input_matrix(m, r, c);
+    if (input_matrix(m, r, c))
+        return EXIT_FAILURE;
+
+    array_of_col_avg(m, r, c, a);
+    
+    sort_matrix_by_col_avg(a, m , r, c);
+    
     output_matrix(m, r, c);
 
-    return EXIT_SUCCESS;
-    
+    return EXIT_SUCCESS;    
 }
 
 long input_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
@@ -34,7 +44,7 @@ long input_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
     return EXIT_SUCCESS;
 }
 
-long output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
+void output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
 {
     size_t i, j;
     for (i = 0; i < rows; i++)
@@ -43,6 +53,52 @@ long output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
             printf("%ld ", m[i][j]);
         puts("");
     }
+    return;
+}
 
-    return EXIT_SUCCESS;
+void array_of_col_avg(long m[NMAX][NMAX], size_t r, size_t c, double a[NMAX])
+{    
+    for (size_t j = 0; j < c; j++)
+    {
+        double sum = 0;
+        for (size_t i = 0; i < r / 2; i++)
+            sum += m[i][j];
+        a[j] = sum / (r / 2);
+    }
+    return;
+}
+
+void sort_matrix_by_col_avg(double a[NMAX], long m[NMAX][NMAX], size_t r, size_t c)
+{
+    for (size_t i = 1; i < c; i++)
+    {
+        size_t cur = i;
+        while (cur > 0 && a[cur] < a[cur - 1])
+        {
+            dswap(a + cur, a + (cur - 1));
+            for (size_t k = 0; k < r; k++)
+                lswap(&m[k][cur], &m[k][cur - 1]);
+            cur--;
+        }        
+    }
+    
+    return;
+}
+
+void lswap(long *a, long *b)
+{
+    long t = *a;
+    *a = *b;
+    *b = t;
+
+    return;
+}
+
+void dswap(double *a, double *b)
+{
+    double t = *a;
+    *a = *b;
+    *b = t;
+
+    return;
 }

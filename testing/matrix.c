@@ -14,7 +14,7 @@ long input_matrix(matrix_t a, size_t rows, size_t columns)
     return EXIT_SUCCESS;
 }
 
-long output_matrix(matrix_t a, size_t rows, size_t columns)
+void output_matrix(matrix_t a, size_t rows, size_t columns)
 {
     size_t i, j;
     for (i = 0; i < rows; i++)
@@ -24,5 +24,5 @@ long output_matrix(matrix_t a, size_t rows, size_t columns)
         puts("");
     }
 
-    return EXIT_SUCCESS;
+    return;
 }

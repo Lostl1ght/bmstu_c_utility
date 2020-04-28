@@ -9,12 +9,12 @@ long input_array(array_t a, size_t n)
     return EXIT_SUCCESS;
 }
 
-long output_array(array_t a, size_t n)
+void output_array(array_t a, size_t n)
 {
     for (size_t i = 0; i < n; i++)
         printf("%ld ", a[i]);
 
-    return EXIT_SUCCESS;
+    return;
 }
 
 long sort_array(array_t a, size_t n)
@@ -31,14 +31,14 @@ long sort_array(array_t a, size_t n)
 
         swap(a + min_i, a + i);
     }
-    return EXIT_SUCCESS;
+    return EXIT_SUCCESS;;
 }
 
-long swap(long *a, long *b)
+void swap(long *a, long *b)
 {
     long t = *a;
     *a = *b;
     *b = t;
 
-    return EXIT_SUCCESS;
+    return;
 }

@@ -53,14 +53,14 @@ void output_array(long *a, size_t n)
 
 double arithmetic_avg_to_n(long a[NMAX], size_t n)
 {
-    long sum = 0;
+    double sum = 0;
     for (size_t i = 0; i < n; i++)
         sum += a[i];
     
-    return (double)sum / n;
+    return sum / n;
 }
 
-size_t delete_by_avg(long *a, size_t n, double avg)
+size_t delete_by_avg(long a[NMAX], size_t n, double avg)
 {
     for (size_t i = 0; i < n; i++)
         if (a[i] > avg)
@@ -69,7 +69,7 @@ size_t delete_by_avg(long *a, size_t n, double avg)
     return n;
 }
 
-void delete_by_i(long *a, size_t *n, size_t *i)
+void delete_by_i(long a[NMAX], size_t *n, size_t *i)
 {
     for (size_t l = *i; l < *n - 1; l++)
         a[l] = a[l + 1];
