@@ -7,6 +7,7 @@
 long input_matrix(long m[NMAX][NMAX], size_t rows, size_t columns);
 void output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns);
 void array_of_col_avg(long m[NMAX][NMAX], size_t r, size_t c, double a[NMAX]);
+double arithmetic_avg_to_n(long m[NMAX][NMAX], size_t n, size_t j);
 void sort_matrix_by_col_avg(double a[NMAX], long m[NMAX][NMAX], size_t r, size_t c);
 void lswap(long *a, long *b);
 void dswap(double *a, double *b);
@@ -16,7 +17,7 @@ int main(void)
     long m[NMAX][NMAX];
     size_t r, c;
     double a[NMAX];
-    
+
     if (scanf("%zu", &r) != 1 || r == 0 || r > 64)
         return EXIT_FAILURE;
     if (scanf("%zu", &c) != 1 || c == 0 || c > 64)
@@ -26,12 +27,12 @@ int main(void)
         return EXIT_FAILURE;
 
     array_of_col_avg(m, r, c, a);
-    
-    sort_matrix_by_col_avg(a, m , r, c);
-    
+
+    sort_matrix_by_col_avg(a, m, r, c);
+
     output_matrix(m, r, c);
 
-    return EXIT_SUCCESS;    
+    return EXIT_SUCCESS;
 }
 
 long input_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
@@ -57,15 +58,20 @@ void output_matrix(long m[NMAX][NMAX], size_t rows, size_t columns)
 }
 
 void array_of_col_avg(long m[NMAX][NMAX], size_t r, size_t c, double a[NMAX])
-{    
+{
     for (size_t j = 0; j < c; j++)
-    {
-        double sum = 0;
-        for (size_t i = 0; i < r / 2; i++)
-            sum += m[i][j];
-        a[j] = sum / (r / 2);
-    }
+        a[j] = arithmetic_avg_to_n(m, r / 2, j);
+
     return;
+}
+
+double arithmetic_avg_to_n(long m[NMAX][NMAX], size_t n, size_t j)
+{
+    double sum = 0;
+    for (size_t i = 0; i < n; i++)
+        sum += m[i][j];
+
+    return sum / n;
 }
 
 void sort_matrix_by_col_avg(double a[NMAX], long m[NMAX][NMAX], size_t r, size_t c)
@@ -79,9 +85,9 @@ void sort_matrix_by_col_avg(double a[NMAX], long m[NMAX][NMAX], size_t r, size_t
             for (size_t k = 0; k < r; k++)
                 lswap(&m[k][cur], &m[k][cur - 1]);
             cur--;
-        }        
+        }
     }
-    
+
     return;
 }
 
