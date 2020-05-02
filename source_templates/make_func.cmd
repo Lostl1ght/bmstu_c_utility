@@ -1,4 +1,5 @@
 @ECHO OFF
+DEL *gcov 2>NUL
 IF NOT EXIST "func" ECHO No tests. & GOTO :END
 ECHO Compiling for coverage.
 CHCP 65001 1>NUL
