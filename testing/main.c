@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "matrix.h"
-#include "array.h"
+// #include "matrix.h"
+// #include "array.h"
 
 long is_prime(long num)
 {

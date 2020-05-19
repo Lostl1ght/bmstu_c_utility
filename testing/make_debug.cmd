@@ -1,15 +1,9 @@
 @ECHO OFF
 ECHO Compiling for debug.
 CHCP 65001 1>NUL
-SET VAR=%CD%
-PUSHD "C:\msys64\mingw64\bin"
-C:\msys64\mingw64\bin\gcc.exe -std=c99 -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Wvla -Werror -O0 -g3 -c %VAR%\main.c -o %VAR%\main.o
-REM C:\msys64\mingw64\bin\gcc.exe -std=c99 -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Wvla -Werror -O0 -g3 -c %VAR%\matrix.c -o %VAR%\matrix.o
-REM C:\msys64\mingw64\bin\gcc.exe -std=c99 -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Wvla -Werror -O0 -g3 -c %VAR%\array.c -o %VAR%\array.o
-C:\msys64\mingw64\bin\gcc.exe -o %VAR%\app.exe %VAR%\main.o 
-REM %VAR%\matrix.o %VAR%\array.o
+gcc -std=c99 -Wall -Wpedantic -Wextra -Wfloat-equal -Wfloat-conversion -Wvla -Werror -O0 -g3 -c *.c
+C:\msys64\mingw64\bin\gcc.exe -o app.exe *.o
 SET ERR=%ERRORLEVEL%
-POPD
 IF %ERR% NEQ 0 ECHO. & ECHO Files were not compiled.
 DEL *.o 2>NUL
 ECHO Done.
