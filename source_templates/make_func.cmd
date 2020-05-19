@@ -11,8 +11,8 @@ ECHO.
 ECHO Testing.
 PUSHD func
 CALL all_test.cmd
-PUSHD ..
-C:\msys64\mingw64\bin\gcov.exe %VAR%\main.c
+POPD
+gcov main.c
 DEL *.gcda *.gcno *.o *.exe
 :END
 ECHO Done.
