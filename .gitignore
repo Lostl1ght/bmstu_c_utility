@@ -1,4 +1,4 @@
-*.exe
+app.exe
 *.o
 *.gcov
 *.gcda

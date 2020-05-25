@@ -7,6 +7,6 @@ app.exe
 ECHO.
 ECHO.
 ECHO Return code is %ERRORLEVEL%.
-DEL *.exe 2>NUL
+DEL app.exe 2>NUL
 :END
 ECHO Done.
