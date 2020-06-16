@@ -4,9 +4,12 @@
 
 int main(void)
 {
-    int a[10];
-    int *pa = a, *pb = &a[2]; // int *pa = a, *pb = a + 2;
-    printf("%zd", pb - pa); // какой формат?, какое значение?
+    char a[10] = "1";
+
+    if (a[1] == '\0')
+        puts("da");
+    else
+        puts("net");
 
     return 0;
 }

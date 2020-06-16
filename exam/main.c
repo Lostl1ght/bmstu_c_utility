@@ -2,13 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "arith.h"
 
+#define N 1024
 
 int main(void)
 {
-    size_t l;
-    scanf("%zu", &l);
-    printf("%zu", 10 * l);
+    char s[N] = "22+3*245";
+    double result;
 
-    return EXIT_SUCCESS;
+    compute(s, &result);
+
+    return 0;
 }
