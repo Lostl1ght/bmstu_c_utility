@@ -8,12 +8,13 @@
 
 int main(void)
 {
-    char s[N] = "3+2*2-4*2";
+    char s[N] = "3+2*2*2+1-4*2";
     double result;
 
-    compute(s, &result);
+    if (compute(s, &result))
+        return EXIT_FAILURE;
 
     printf("%lf", result);
 
-    return 0;
+    return EXIT_SUCCESS;
 }

@@ -1,13 +1,16 @@
 #include "arith.h"
 #include <string.h>
-
-#include <stdio.h>
+#include <ctype.h>
 
 int compute(const char *s, double *result)
 {
     size_t len, i;
     double num1, num2, num3;
     char oper1, oper2;
+
+    if (check(s))
+        return EXIT_FAILURE;
+
     len = strlen(s);
     i = 0;
 
@@ -27,7 +30,7 @@ int compute(const char *s, double *result)
     }
 
     *result = num1;
-    return 0;
+    return EXIT_SUCCESS;
 }
 
 int get_num(const char *s, size_t *i)
@@ -35,7 +38,7 @@ int get_num(const char *s, size_t *i)
     size_t j = 0;
     int num;
     char num_s[INT_LEN];
-    while (s[*i] != '\0' && s[*i] != '+' && s[*i] != '*' && s[*i] != '/')
+    while (strchr("+-*/", s[*i]) == NULL)
     {
         if (j > 0 && s[*i] == '-')
             break;
@@ -49,8 +52,8 @@ int get_num(const char *s, size_t *i)
 }
 
 void compute_prod(char *oper2, double *num2, double *num3, size_t *i, const char *s)
-{    
-    while (*oper2 == '*' || *oper2 == '/' )
+{
+    while (*oper2 == '*' || *oper2 == '/')
     {
         *num3 = get_num(s, i);
         if (*oper2 == '*')
@@ -60,4 +63,36 @@ void compute_prod(char *oper2, double *num2, double *num3, size_t *i, const char
         *oper2 = s[*i];
         (*i)++;
     }
+}
+
+int check(const char *s)
+{
+    if (isdigit(*s) == 0)
+    {
+        if (*s != '-')
+            return EXIT_FAILURE;
+        else if (isdigit(*(s + 1)) == 0)
+            return EXIT_FAILURE;
+        else
+        {
+            s++;
+            while (*s)
+            {
+                if (isdigit(*s) == 0)
+                {
+                    if (strchr("+-*/", *s) == NULL)
+                        return EXIT_FAILURE;
+                    else if (*(s + 1) != '\0' && *(s + 1) == '-')
+                    {
+                        if (*(s + 2) != '\0' && isdigit(*(s + 2)) == 0)
+                            return EXIT_FAILURE;
+                    }
+                    else if (isdigit(*(s + 1)) == 0)
+                        return EXIT_FAILURE;
+                }
+                s++;
+            }
+        }
+    }
+    return EXIT_SUCCESS;
 }
