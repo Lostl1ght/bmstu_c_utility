@@ -3,7 +3,9 @@
 
 #include <stdlib.h>
 
+#define INT_LEN 12
+
 int compute(char *s, double *result);
-long get_right(char *s, size_t *p_end);
+int get_num(char *s, size_t *i);
 
 #endif
