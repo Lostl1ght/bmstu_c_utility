@@ -8,10 +8,12 @@
 
 int main(void)
 {
-    char s[N] = "22+3*245";
+    char s[N] = "3+2*2-4*2";
     double result;
 
     compute(s, &result);
+
+    printf("%lf", result);
 
     return 0;
 }
