@@ -38,7 +38,7 @@ int get_num(const char *s, size_t *i)
     size_t j = 0;
     int num;
     char num_s[INT_LEN];
-    while (strchr("+-*/", s[*i]) == NULL)
+    while (strchr("+*/", s[*i]) == NULL)
     {
         if (j > 0 && s[*i] == '-')
             break;
@@ -76,23 +76,32 @@ int check(const char *s)
         else
         {
             s++;
-            while (*s)
-            {
-                if (isdigit(*s) == 0)
-                {
-                    if (strchr("+-*/", *s) == NULL)
-                        return EXIT_FAILURE;
-                    else if (*(s + 1) != '\0' && *(s + 1) == '-')
-                    {
-                        if (*(s + 2) != '\0' && isdigit(*(s + 2)) == 0)
-                            return EXIT_FAILURE;
-                    }
-                    else if (isdigit(*(s + 1)) == 0)
-                        return EXIT_FAILURE;
-                }
-                s++;
-            }
+            if (check_rest(s))
+                return EXIT_FAILURE;
         }
+    }
+    else if (check_rest(s))
+        return EXIT_FAILURE;
+    return EXIT_SUCCESS;
+}
+
+int check_rest(const char *s)
+{
+    while (*s)
+    {
+        if (isdigit(*s) == 0)
+        {
+            if (strchr("+-*/", *s) == NULL)
+                return EXIT_FAILURE;
+            else if (*(s + 1) != '\0' && *(s + 1) == '-')
+            {
+                if (*(s + 2) != '\0' && isdigit(*(s + 2)) == 0)
+                    return EXIT_FAILURE;
+            }
+            else if (isdigit(*(s + 1)) == 0)
+                return EXIT_FAILURE;
+        }
+        s++;
     }
     return EXIT_SUCCESS;
 }

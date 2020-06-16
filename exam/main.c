@@ -8,7 +8,7 @@
 
 int main(void)
 {
-    char s[N] = "3+2*2*2+1-4*2";
+    char s[N] = "3+2*2*2+4*-2";
     double result;
 
     if (compute(s, &result))
