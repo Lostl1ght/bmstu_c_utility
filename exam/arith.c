@@ -105,3 +105,17 @@ int check_rest(const char *s)
     }
     return EXIT_SUCCESS;
 }
+
+void delete_spaces(char *s)
+{
+    char *p;
+    size_t len;
+    len = strlen(s);
+    for (p = s + len - 1; p >= s; p--)
+        if (*p == '\n' || *p == ' ')
+            while (*p)
+            {
+                *p = *(p + 1);
+                p++;
+            }
+}

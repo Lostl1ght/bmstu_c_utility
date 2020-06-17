@@ -8,8 +8,12 @@
 
 int main(void)
 {
-    char s[N] = "3+2*2*2+4*-2";
+    char s[N];
     double result;
+
+    fgets(s, N, stdin);
+
+    delete_spaces(s);
 
     if (compute(s, &result))
         return EXIT_FAILURE;
