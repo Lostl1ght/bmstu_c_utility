@@ -5,7 +5,7 @@
 int compute(const char *s, double *result)
 {
     size_t len, i;
-    double num1, num2, num3;
+    double num1, num2;
     char oper1, oper2;
 
     if (check(s))
@@ -21,7 +21,7 @@ int compute(const char *s, double *result)
         num2 = get_num(s, &i);
         oper2 = s[i];
         i++;
-        compute_prod(&oper2, &num2, &num3, &i, s);
+        compute_prod(&oper2, &num2, &i, s);
         if (oper1 == '+')
             num1 += num2;
         else if (oper1 == '-')
@@ -51,15 +51,16 @@ int get_num(const char *s, size_t *i)
     return num;
 }
 
-void compute_prod(char *oper2, double *num2, double *num3, size_t *i, const char *s)
+void compute_prod(char *oper2, double *num2, size_t *i, const char *s)
 {
+    double num3;
     while (*oper2 == '*' || *oper2 == '/')
     {
-        *num3 = get_num(s, i);
+        num3 = get_num(s, i);
         if (*oper2 == '*')
-            *num2 *= *num3;
+            *num2 *= num3;
         else if (*oper2 == '/')
-            *num2 /= *num3;
+            *num2 /= num3;
         *oper2 = s[*i];
         (*i)++;
     }
