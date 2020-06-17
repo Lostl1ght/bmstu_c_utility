@@ -13,6 +13,7 @@ PUSHD func
 CALL all_test.cmd
 POPD
 gcov main.c
+gcov arith.c
 DEL *.gcda *.gcno *.o *.exe
 :END
 ECHO Done.
