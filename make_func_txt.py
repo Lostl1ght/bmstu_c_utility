@@ -41,7 +41,7 @@ def make_args(path: str, pos_count: int, neg_count: int) -> None:
             f1.close()
 
 
-def input_vars() -> (str, int, int):
+def input_vars() -> (str, int, int, str):
     path = input("Input path to func directory: ")
     pos_count = int(input("Input positives count: "))
     neg_count = int(input("Input negatives count: "))
