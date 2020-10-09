@@ -1,0 +1,12 @@
+*.exe
+*.o
+*.gcov
+*.gcda
+*.gcno
+debug.cmd
+sample*.bin
+data*.bin
+make_create.cmd
+create.c
+copy.cmd
+out/
