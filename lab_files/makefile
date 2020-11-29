@@ -14,7 +14,7 @@ SRCS = $(wildcard $(SRCPATH)*.c)
 USRCSF = 
 USRCSC = $(wildcard $(UNIPATH)*.c)
 
-.NOTPARALLEL: release debug func deps
+.NOTPARALLEL: release debug func
 .PHONY: release debug clean dir deps func unit
 
 release: CFLAGS += -g0
