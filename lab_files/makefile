@@ -4,12 +4,14 @@ INCPATH = ./inc/
 SRCPATH = ./src/
 UNIPATH = ./unit_tests/
 FUNCPATH = ./func_tests/
+MEMCHECK = valgrind # drmemory -batch -lib_blacklist "*" --
+MEMFLAGS = -s --leak-check=full --show-leak-kinds=all --suppressions=unit_tests/unit.supp
 CFLAGS = -std=c99 -Wall -Wextra -Wpedantic -Werror -Wfloat-conversion -O0
 
 SRCS = $(wildcard $(SRCPATH)*.c)
 
 # В этой строке указываются юниты для тестирования. Все остальное работает автоматически.
-USRCSF = # $(SRCPATH)matrix_multiply.c $(SRCPATH)matrix_process.c
+USRCSF = 
 USRCSC = $(wildcard $(UNIPATH)*.c)
 
 .NOTPARALLEL: release debug func deps
@@ -28,13 +30,13 @@ func: $(OUTPATH)func.lastbuildstate app.exe
 	mv *.gcov $(OUTPATH)
 
 unit: $(OUTPATH)unit.lastbuildstate unit_tests.exe
-	drmemory -batch -lib_blacklist "*" -- unit_tests.exe
+	 $(MEMCHECK) $(MEMFLAGS) ./unit_tests.exe
 
 app.exe: $(SRCS:$(SRCPATH)%.c=$(OUTPATH)%.o)
-	$(CC) $(CFLAGS) $^ -o app.exe
+	$(CC) $^ -o app.exe
 
 unit_tests.exe: $(USRCSF:$(SRCPATH)%.c=$(OUTPATH)%.o) $(USRCSC:$(UNIPATH)%.c=$(OUTPATH)%.o)
-	$(CC) $(CFLAGS) $^ -o $@ -lcheck
+	$(CC) $^ -o $@ -lcheck 
 
 $(OUTPATH)%.o: $(SRCPATH)%.c | dir
 	$(CC) -I$(INCPATH) $(CFLAGS) -c $< -o $@
@@ -55,8 +57,7 @@ ifeq ($(MAKECMDGOALS), $(filter $(MAKECMDGOALS), release debug app.exe func))
 include $(SRCS:$(SRCPATH)%.c=$(OUTPATH)%.d)
 else
 ifeq ($(MAKECMDGOALS), $(filter $(MAKECMDGOALS), unit unit_tests.exe))
-include $(USRCSF:$(SRCPATH)%.c=$(OUTPATH)%.d)
-include $(USRCSC:$(UNIPATH)%.c=$(OUTPATH)%.d)
+include $(USRCSF:$(SRCPATH)%.c=$(OUTPATH)%.d) $(USRCSC:$(UNIPATH)%.c=$(OUTPATH)%.d)
 endif
 endif
 endif
@@ -69,8 +70,7 @@ dir:
 	mkdir -p $(OUTPATH)
 
 clean:
-	rm -rf *.exe $(OUTPATH)
-	mkdir $(OUTPATH)
+	rm -rf *.exe $(OUTPATH)*.o $(OUTPATH)*.gcov $(OUTPATH)*.gcda $(OUTPATH)*.gcno $(OUTPATH)*.lastbuildstate $(OUTPATH)*.d
 
 deps:
 	rm -f $(OUTPATH)*.d
