@@ -1,0 +1,216 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:check_list_create
+   fun:tcase_create
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:check_list_create
+   fun:srunner_create
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:check_list_create
+   fun:srunner_init_logging
+   fun:srunner_run_init
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:check_list_create
+   fun:tag_string_to_list
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:srunner_create
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:suite_create
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   fun:erealloc
+   fun:maybe_grow
+   fun:check_list_add_end
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:check_list_create
+   fun:suite_create
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:_tcase_add_test
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:srunner_register_lfun
+   fun:srunner_init_logging
+   fun:srunner_run_init
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:tcase_create
+   fun:*_suite
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:fdopen@@GLIBC_2.2.5
+   fun:open_tmp_file
+   fun:setup_pipe
+   fun:setup_pipe
+   fun:setup_messaging
+   fun:srunner_run_init
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:pass_msg
+   fun:set_fork_info
+   fun:receive_result_info_fork
+   fun:tcase_run_tfun_fork
+   fun:srunner_iterate_tcase_tfuns
+   fun:srunner_run_tcase
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+   fun:rcvmsg_update_loc
+   fun:get_result
+   fun:punpack
+   fun:receive_test_result
+   fun:receive_result_info_fork
+   fun:tcase_run_tfun_fork
+   fun:srunner_iterate_tcase_tfuns
+   fun:srunner_run_tcase
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:emalloc
+   fun:tr_create
+   fun:construct_test_result
+   fun:receive_test_result
+   fun:receive_result_info_fork
+   fun:tcase_run_tfun_fork
+   fun:srunner_iterate_tcase_tfuns
+   fun:srunner_run_tcase
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:fdopen@@GLIBC_2.2.5
+   fun:open_tmp_file
+   fun:setup_pipe
+   fun:setup_pipe
+   fun:receive_test_result
+   fun:receive_result_info_fork
+   fun:tcase_run_tfun_fork
+   fun:srunner_iterate_tcase_tfuns
+   fun:srunner_run_tcase
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   fun:erealloc
+   fun:maybe_grow
+   fun:check_list_add_end
+   fun:srunner_add_failure
+   fun:srunner_iterate_tcase_tfuns
+   fun:srunner_run_tcase
+   fun:srunner_iterate_suites
+   fun:srunner_run_tagged
+   fun:main
+}
