@@ -5,8 +5,9 @@ SRCPATH = ./src/
 UNIPATH = ./unit_tests/
 FUNCPATH = ./func_tests/
 MEMCHECK = valgrind # drmemory -batch -lib_blacklist "*" --
-MEMFLAGS = -s --leak-check=full --show-leak-kinds=all --suppressions=unit_tests/unit.supp
+MEMFLAGS = --leak-check=full --show-leak-kinds=all
 CFLAGS = -std=c99 -Wall -Wextra -Wpedantic -Werror -Wfloat-conversion -O0
+LIBS = -lcheck
 
 SRCS = $(wildcard $(SRCPATH)*.c)
 
@@ -30,13 +31,14 @@ func: $(OUTPATH)func.lastbuildstate app.exe
 	mv *.gcov $(OUTPATH)
 
 unit: $(OUTPATH)unit.lastbuildstate unit_tests.exe
-	 $(MEMCHECK) $(MEMFLAGS) ./unit_tests.exe
+	 $(MEMCHECK) ./unit_tests.exe $(MEMFLAGS)
 
 app.exe: $(SRCS:$(SRCPATH)%.c=$(OUTPATH)%.o)
 	$(CC) $^ -o app.exe
 
+# unit_tests.exe: CFLAGS += -g3
 unit_tests.exe: $(USRCSF:$(SRCPATH)%.c=$(OUTPATH)%.o) $(USRCSC:$(UNIPATH)%.c=$(OUTPATH)%.o)
-	$(CC) $^ -o $@ -lcheck 
+	$(CC) $^ -o $@ $(LIBS)
 
 $(OUTPATH)%.o: $(SRCPATH)%.c | dir
 	$(CC) -I$(INCPATH) $(CFLAGS) -c $< -o $@
