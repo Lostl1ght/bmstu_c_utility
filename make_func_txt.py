@@ -7,9 +7,9 @@ def make_in_out(path: str, pos_count: int, neg_count: int) -> None:
 
         for i in range(1, pos_count + 1):
             try:
-                f1 = open(path + "\pos_" + str(i) + end, "r")
+                f1 = open(path + "/pos_" + str(i) + end, "r")
             except IOError:
-                f1 = open(path + "\pos_" + str(i) + end, "w")
+                f1 = open(path + "/pos_" + str(i) + end, "w")
             finally:
                 f1.close()
 
@@ -26,17 +26,17 @@ def make_args(path: str, pos_count: int, neg_count: int) -> None:
     end = "_args.txt"
     for i in range(1, pos_count + 1):
         try:
-            f1 = open(path + "\pos_" + str(i) + end, "r")
+            f1 = open(path + "/pos_" + str(i) + end, "r")
         except IOError:
-            f1 = open(path + "\pos_" + str(i) + end, "w")
+            f1 = open(path + "/pos_" + str(i) + end, "w")
         finally:
             f1.close()
 
     for i in range(1, neg_count + 1):
         try:
-            f1 = open(path + "\\neg_" + str(i) + end, "r")
+            f1 = open(path + "/neg_" + str(i) + end, "r")
         except IOError:
-            f1 = open(path + "\\neg_" + str(i) + end, "w")
+            f1 = open(path + "/neg_" + str(i) + end, "w")
         finally:
             f1.close()
 
