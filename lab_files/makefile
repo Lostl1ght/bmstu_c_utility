@@ -26,19 +26,19 @@ debug: $(OUTPATH)debug.lastbuildstate app.exe
 
 func: CFLAGS += -g0 --coverage
 func: $(OUTPATH)func.lastbuildstate app.exe
-	cd $(FUNCPATH) && ./all_tests.cmd
+	cd $(FUNCPATH) && ./all_tests.sh
 	gcov $(SRCS:$(SRCPATH)%.c=$(OUTPATH)%.o)
 	mv *.gcov $(OUTPATH)
 
 unit: $(OUTPATH)unit.lastbuildstate unit_tests.exe
-	 $(MEMCHECK) ./unit_tests.exe $(MEMFLAGS)
+	 $(MEMCHECK) $(MEMFLAGS) ./unit_tests.exe
 
 app.exe: $(SRCS:$(SRCPATH)%.c=$(OUTPATH)%.o)
-	$(CC) $^ -o app.exe
+	$(CC) $(CFLAGS) $^ -o app.exe
 
-# unit_tests.exe: CFLAGS += -g3
+unit_tests.exe: CFLAGS += -g3
 unit_tests.exe: $(USRCSF:$(SRCPATH)%.c=$(OUTPATH)%.o) $(USRCSC:$(UNIPATH)%.c=$(OUTPATH)%.o)
-	$(CC) $^ -o $@ $(LIBS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
 $(OUTPATH)%.o: $(SRCPATH)%.c | dir
 	$(CC) -I$(INCPATH) $(CFLAGS) -c $< -o $@
