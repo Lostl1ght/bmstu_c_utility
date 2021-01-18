@@ -2,6 +2,13 @@
 
 #define MY_HEAP_SIZE 1000000
 
+struct block_t
+{
+    size_t size;
+    int free;
+    struct block_t *next;
+};
+
 // пространство под "кучу"
 static char my_heap[MY_HEAP_SIZE];
 
